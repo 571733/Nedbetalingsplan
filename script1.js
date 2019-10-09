@@ -1,12 +1,12 @@
-document.getElementById('laane').addEventListener("keyup", validateLaane);
-document.getElementById('rente').addEventListener("keyup", validateRente);
-document.getElementById('gebyr').addEventListener("keyup", validateGebyr);
+document.getElementById('laane').addEventListener("keyup", validateLaaneInput);
+document.getElementById('rente').addEventListener("keyup", validateRenteInput);
+document.getElementById('gebyr').addEventListener("keyup", validateGebyrInput);
 
 let laanDisable = false;
 let renteDisable = false;
 let gebyrDisable = false;
 
-function validateLaane() {
+function validateLaaneInput() {
     let laane = document.getElementById('laane').value;
     let laanFeil = document.getElementById("laanFeil");
 
@@ -28,7 +28,7 @@ function validateLaane() {
 
 }
 
-function validateRente() {
+function validateRenteInput() {
     let rente = document.getElementById('rente').value;
     let renteFeil = document.getElementById('renteMax');
     let regex = /[^0-9]/g;
@@ -47,7 +47,7 @@ function validateRente() {
 
 }
 
-function validateGebyr() {
+function validateGebyrInput() {
     let gebyr = document.getElementById('gebyr').value
     let melding = document.getElementById('gebyrmelding')
     let regex = /[^0-9]/g;
@@ -81,7 +81,7 @@ function getInputData() {
 }
 
 function planlegging() {
-    destroyMinGraf()
+    destroyMineGrafer();
     let payload = getInputData();
     sendToAPI(payload)
 }
@@ -99,7 +99,7 @@ function sendToAPI(payload) {
         .then((res) => res.json())
         .then((data) => {
             lagNedbetalingsplan(data);
-            renderChart(data);
+            restgjeldGraf(data);
             RenterOgAvdragChart(data);
         })
         .catch(error => console.log(error));
@@ -169,31 +169,27 @@ function lagNedbetalingsplan(data) {
     document.getElementById('rentekostnad').innerHTML = `\- Lånets totale rentekostnader er kr ${sumRenter.toFixed(2)} <br>
     \- Lånets totale gebyrkostnader er kr ${sumGebyr.toFixed(2)}<br>
     \- Lånets totale kostnad er kr ${sumInnbet.toFixed(2)}`;
-
-    //document.getElementById('totalgebyr').innerHTML = `\- Lånets totale gebyrkostnader er kr ${sumGebyr.toFixed(2)}`;
-    //document.getElementById('totalinnbetaling').innerHTML = `\- Lånets totale kostnad er kr ${sumInnbet.toFixed(2)}`;
 }
 
-let minGraf;
-
-function destroyMinGraf() {
-    if (minGraf) {
-        minGraf.destroy();
+function destroyMineGrafer() {
+    if (tempRestGraf) {
+        tempRestGraf.destroy();
     }
     if (renteogAvdragGraf) {
         renteogAvdragGraf.destroy();
     }
 }
 
-function renderChart(data) {
+let tempRestGraf;
+function restgjeldGraf(data) {
 
     let dato = [];
     data.nedbetalingsplan.innbetalinger.forEach(elem => (dato.push(elem.dato)));
 
-    let restgjeld = []
+    let restgjeld = [];
     data.nedbetalingsplan.innbetalinger.forEach(elem => (restgjeld.push(elem.restgjeld)));
 
-    minGraf = new Chart(document.getElementById("chart"), {
+    tempRestGraf = new Chart(document.getElementById("chart"), {
         type: "line",
         data: {
             labels: dato,
@@ -219,7 +215,6 @@ function renderChart(data) {
 }
 
 let renteogAvdragGraf;
-
 function RenterOgAvdragChart(data) {
 
     let dato = [];
@@ -260,10 +255,4 @@ function RenterOgAvdragChart(data) {
             }
         }
     });
-
 }
-
-
-
-
-

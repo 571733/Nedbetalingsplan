@@ -3,8 +3,6 @@
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     column-width: max-content;
-
-
 }
 
 #plan td, #plan th {
@@ -34,7 +32,6 @@
     left: 25%;
     top: 100px;
     position: absolute;
-
 }
 
 .info {
