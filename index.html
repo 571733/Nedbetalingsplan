@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nedbetalingsplan</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+
+    <link rel="stylesheet" href="style.css"></link>
+</head>
+<body>
+<h1>Nedbetalingsplan</h1>
+
+<div class="inputform">
+    <form id="inputs">
+        Lånebeløp<br>
+        <input type="text" name="inputLaanebelop" id="laane" value="2000000"><br>
+        <span id="laanFeil" style="color: #d72d1d; "></span><br>
+        Nominell rente <br>
+        <input type="text" name="inputRente" id="rente" value="3"><br>
+        <span id="renteMax" style="color: #d72d1d; "></span><br>
+        Termingebyr <br>
+        <input type="text" id="gebyr" name="inputGebyr" value="30"><br>
+        <span id="gebyrmelding" style="color: #d72d1d; "></span><br>
+        Utløpsdato<br>
+        <input type="date" name="inputUtlop" value="2045-01-01" required><br>
+        Saldo dato<br>
+        <input type="date" id="saldo" name="inputSaldo" value="2020-01-01" required><br>
+        Dato første innbetaling <br>
+        <input type="date" id="forsteInnbetaling" name="InputBetStart" value="2020-02-01" required><br>
+        <input id="clickMe" type="button" onclick="planlegging()" value="Lag nedbetalingsplan"/><br>
+        <span id="datokluss" style="color: #d72d1d; "></span><br>
+    </form>
+</div>
+
+
+<div class="table">
+    <table id="plan"></table>
+    <br>
+</div>
+<div class="info">
+    <p id="rentekostnad"></p> <br>
+    <p id="totalgebyr"></p> <br>
+    <p id="totalinnbetaling"></p> <br>
+</div>
+
+
+<script src="script1.js"></script>
+<div class="canvasholder">
+    <canvas id="chart" width="20" height="20"></canvas>
+    <canvas id="roga" width="20" height="20"></canvas>
+</div>
+</body>
+</html>

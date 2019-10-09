@@ -1,0 +1,107 @@
+
+#plan {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    column-width: max-content;
+
+
+}
+
+#plan td, #plan th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#plan tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#plan tr:hover {
+    background-color: #ddd;
+}
+
+#plan th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.table {
+    height: 515px;
+    overflow: scroll;
+    left: 25%;
+    top: 100px;
+    position: absolute;
+
+}
+
+.info {
+    left: 25%;
+    position: absolute;
+}
+
+input[type=text], select {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=date], select {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=button] {
+    width: 20%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=button]:disabled {
+    width: 20%;
+    background-color: lightslategrey;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+h1 {
+    margin: auto;
+    text-align: center;
+}
+
+
+.canvasholder {
+    position: absolute;
+    height: 10vh;
+    width: 30vw;
+    top: 70px;
+    right: 70px;
+}
+
+.info {
+    padding: 12px 20px;
+}
